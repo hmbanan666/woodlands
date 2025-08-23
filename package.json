@@ -1,0 +1,66 @@
+{
+  "name": "@hmbanan666/woodlands",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "description": "Telegram game",
+  "author": "Nick Kosarev <hmbanan666@hotmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/hmbanan666/woodlands",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hmbanan666/woodlands.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hmbanan666/woodlands/issues"
+  },
+  "keywords": [
+    "game",
+    "telegram"
+  ],
+  "engines": {
+    "node": ">=22.18.0",
+    "pnpm": ">=10.15.0"
+  },
+  "scripts": {
+    "release": "changelogen-monorepo --release --push",
+    "build": "pnpm -r run build",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix .",
+    "clean": "pnpm -r run clean",
+    "clean:modules": "pnpm -r run clean:modules && rm -rf node_modules",
+    "typecheck": "pnpm -r run typecheck",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "check:full": "pnpm run lint:fix && pnpm run typecheck && pnpm vitest run",
+    "prepare": "husky",
+    "generate:cert": "mkdir -p .cert && mkcert -key-file ./.cert/localhost-key.pem -cert-file ./.cert/localhost.pem 'app.local'"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "catalog:",
+    "@commitlint/cli": "catalog:",
+    "@commitlint/config-conventional": "catalog:",
+    "@vitest/browser": "catalog:",
+    "@vitest/coverage-v8": "catalog:",
+    "changelogen-monorepo": "catalog:",
+    "eslint": "catalog:",
+    "husky": "catalog:",
+    "lint-staged": "catalog:",
+    "playwright": "catalog:",
+    "vite": "catalog:",
+    "vite-tsconfig-paths": "catalog:",
+    "vitest": "catalog:",
+    "vitest-browser-vue": "catalog:"
+  },
+  "resolutions": {
+    "unimport": "4.1.1"
+  },
+  "lint-staged": {
+    "*.ts": "pnpm run lint"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}

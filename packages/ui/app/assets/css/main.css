@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@plugin "tailwindcss-motion";
+@import "@nuxt/ui";
+
+:root {
+  --ui-primary: black;
+  --ui-radius: 0.5rem;
+}
+
+.dark {
+  --ui-primary: white;
+}
