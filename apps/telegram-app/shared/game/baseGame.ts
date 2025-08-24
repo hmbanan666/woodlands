@@ -110,6 +110,8 @@ export class BaseGame extends Container implements Game {
 
     await this.initPlayer(telegramId)
 
+    this.websocketService.connect(telegramId)
+
     this.app.ticker.add(this.baseAppTicker, 'baseAppTicker')
   }
 

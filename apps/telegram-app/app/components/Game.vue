@@ -64,7 +64,6 @@ onMounted(async () => {
 
   // Init
   await game.value.init(userStore.initDataState.user.id.toString())
-  game.value.websocketService.connect(userStore.initDataState.user.id.toString())
 
   canvas.value?.appendChild(game.value.app.canvas)
 
