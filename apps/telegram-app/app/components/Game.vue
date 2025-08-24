@@ -43,7 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Game } from '@woodlands/game'
+import type { Game } from '#shared/game/types'
 import { hapticFeedback } from '@telegram-apps/sdk-vue'
 
 const { t } = useI18n()

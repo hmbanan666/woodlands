@@ -1,4 +1,4 @@
-import type { WebSocketMessage } from '@woodlands/game'
+import type { WebSocketMessage } from '#shared/game/types/websocket'
 import { handleClose, handleMessage, logger } from '../services/websocket'
 
 export default defineWebSocketHandler({

@@ -18,10 +18,10 @@
     "@telegram-apps/init-data-node": "catalog:",
     "@telegram-apps/sdk-vue": "catalog:",
     "@woodlands/database": "workspace:*",
-    "@woodlands/game": "workspace:*",
     "@woodlands/ui": "workspace:*",
     "date-fns": "catalog:",
     "pinia": "catalog:",
+    "pixi.js": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

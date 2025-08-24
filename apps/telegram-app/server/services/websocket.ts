@@ -1,4 +1,4 @@
-import type { WebSocketConnect, WebSocketEvents, WebSocketMessage } from '@woodlands/game'
+import type { WebSocketConnect, WebSocketEvents, WebSocketMessage } from '#shared/game/types/websocket'
 import type { Peer } from 'crossws'
 import { createId } from '@paralleldrive/cuid2'
 import { activeRooms } from './room'

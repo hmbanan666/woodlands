@@ -1,5 +1,5 @@
-import type { Game } from '@woodlands/game'
-import { BaseGame } from '@woodlands/game'
+import type { Game } from '#shared/game/types'
+import { BaseGame } from '#shared/game/baseGame'
 
 // Only one instance
 let instance: Game | null = null

@@ -7,7 +7,7 @@
   >
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/5">
       <div class="flex flex-col justify-center items-center gap-6 text-white">
-        <div class="flex flex-col">
+        <div class="flex flex-col justify-center items-center">
           <p class="text-lg font-semibold">
             hmbanan666's
           </p>
