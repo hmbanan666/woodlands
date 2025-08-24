@@ -15,5 +15,5 @@ export function getRandomInRange(min: number, max: number): number {
 
 export function getMinusOrPlus(): number {
   // -1 or 1
-  return getRandomInRange(0, 1) >= 0 ? 1 : -1
+  return getRandomInRange(0, 1) === 1 ? 1 : -1
 }
