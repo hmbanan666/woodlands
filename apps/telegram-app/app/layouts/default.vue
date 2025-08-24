@@ -1,3 +1,8 @@
 <template>
-  <slot />
+  <main>
+    <Game />
+    <slot />
+  </main>
+
+  <Navigation />
 </template>

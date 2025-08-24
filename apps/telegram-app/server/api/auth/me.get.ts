@@ -34,6 +34,7 @@ export default defineEventHandler(async (event) => {
     return {
       id: telegramId,
       name: telegramData.user.first_name,
+      languageCode: telegramData.user.language_code,
     }
   } catch (error) {
     throw errorResolver(error)

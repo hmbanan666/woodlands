@@ -21,6 +21,7 @@
     "@woodlands/ui": "workspace:*",
     "date-fns": "catalog:",
     "pinia": "catalog:",
+    "pixi.js": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

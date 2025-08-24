@@ -1,10 +1,11 @@
-import { initDataRaw as _initDataRaw, useSignal } from '@telegram-apps/sdk-vue'
+import { initDataRaw as _initDataRaw, initDataState as _initDataState, useSignal } from '@telegram-apps/sdk-vue'
 
 export const useUserStore = defineStore('user', () => {
   const id = ref<string | undefined>(undefined)
   const name = ref<string | undefined>(undefined)
 
   const initDataRaw = useSignal(_initDataRaw)
+  const initDataState = useSignal(_initDataState)
 
   async function update() {
     try {
@@ -34,6 +35,9 @@ export const useUserStore = defineStore('user', () => {
   return {
     id,
     name,
+
+    initDataRaw,
+    initDataState,
 
     update,
   }
