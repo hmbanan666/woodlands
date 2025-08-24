@@ -1,3 +1,11 @@
+import { repository } from '@woodlands/database'
+
 export default defineEventHandler(async () => {
-  return { ok: true }
+  try {
+    await repository.checkHealth()
+
+    return { ok: true }
+  } catch (error) {
+    throw errorResolver(error)
+  }
 })

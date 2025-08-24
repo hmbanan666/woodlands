@@ -4,6 +4,11 @@ export default defineNuxtConfig({
   experimental: {
     typedPages: true,
   },
+  nitro: {
+    experimental: {
+      websocket: true,
+    },
+  },
   devtools: {
     componentInspector: false,
   },
@@ -29,6 +34,7 @@ export default defineNuxtConfig({
   i18n: {
     locales: [
       { code: 'ru', language: 'ru-RU', name: 'Русский', file: 'ru-RU.json' },
+      { code: 'en', language: 'en-US', name: 'English', file: 'en-US.json' },
     ],
     strategy: 'no_prefix',
   },

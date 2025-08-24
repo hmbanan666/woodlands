@@ -1,0 +1,19 @@
+{
+  "name": "@woodlands/game",
+  "type": "module",
+  "private": true,
+  "main": "./src/index.ts",
+  "files": [
+    "src/**/*"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist",
+    "clean:modules": "rm -rf node_modules",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@paralleldrive/cuid2": "catalog:",
+    "@vueuse/core": "catalog:",
+    "pixi.js": "catalog:"
+  }
+}

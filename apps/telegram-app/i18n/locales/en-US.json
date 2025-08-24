@@ -1,0 +1,19 @@
+{
+  "name": "English",
+  "short-name": "Eng",
+  "common": {
+    "to-home": "To home",
+    "close": "Close"
+  },
+  "app": {
+    "game": "Game",
+    "quests": "Quests",
+    "shop": "Shop",
+    "top": "Top",
+    "welcome": {
+      "title": "Welcome to the game!",
+      "description": "Tap anywhere to move. Tap trees to cut them down.",
+      "hint": "What's next: upgrade your character, get rewards for levels. Unlock new characters."
+    }
+  }
+}
