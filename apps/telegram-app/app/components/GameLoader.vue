@@ -2,7 +2,7 @@
   <div
     class="z-100 absolute inset-0 bg-gradient-to-br from-orange-400 to-violet-700"
     :class="[
-      !isLoading && 'transform -translate-x-full duration-500',
+      !gameStore.isLoading && 'transform -translate-x-full duration-500',
     ]"
   >
     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-1/5">
@@ -23,5 +23,5 @@
 </template>
 
 <script setup lang="ts">
-const { isLoading } = useGameClient()
+const gameStore = useGameStore()
 </script>

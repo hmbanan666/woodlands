@@ -19,7 +19,6 @@ import { BaseWebSocketService } from './services/baseWebSocketService'
 
 interface BaseGameOptions {
   websocketUrl: string
-  updateUI?: () => void
 }
 
 export class BaseGame extends Container implements Game {
@@ -69,13 +68,13 @@ export class BaseGame extends Container implements Game {
     }
   }
 
-  constructor({ websocketUrl, updateUI }: BaseGameOptions) {
+  constructor({ websocketUrl }: BaseGameOptions) {
     super()
 
     this.id = createId()
     this.app = new Application()
 
-    this.updateUI = updateUI || (() => {})
+    this.updateUI = () => {}
     this.openLoader = () => {}
     this.vibrate = () => {}
 
@@ -90,7 +89,8 @@ export class BaseGame extends Container implements Game {
       backgroundAlpha: 0,
       antialias: false,
       roundPixels: false,
-      resolution: 1,
+      resolution: 4,
+      autoDensity: true,
       resizeTo: window,
     })
 
