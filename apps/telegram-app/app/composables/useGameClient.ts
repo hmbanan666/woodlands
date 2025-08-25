@@ -30,8 +30,8 @@ function _useGameClient() {
     }
   }
 
-  watch(router.currentRoute, (value) => {
-    isOpened.value = value.path === '/'
+  watch(router.currentRoute, () => {
+    isOpened.value = router.currentRoute.value.name === 'index'
   })
 
   return {
