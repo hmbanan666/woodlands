@@ -5,9 +5,10 @@ import { BaseGame } from '#shared/game/baseGame'
 let instance: Game | null = null
 
 export function useGame() {
+  const { public: publicEnv } = useRuntimeConfig()
+
   if (!instance) {
-    const websocketUrl = 'wss://woodlands.chatgame.space/api/websocket'
-    instance = new BaseGame({ websocketUrl })
+    instance = new BaseGame({ websocketUrl: publicEnv.websocketUrl })
     return instance
   }
 
