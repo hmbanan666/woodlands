@@ -29,11 +29,8 @@ export default defineNuxtConfig({
   },
   css: [resolvePath('./app/assets/css/main.css')],
   ui: {
-    colorMode: true,
+    colorMode: false,
     fonts: false,
-  },
-  colorMode: {
-    storageKey: 'color-mode',
   },
   icon: {
     clientBundle: {
