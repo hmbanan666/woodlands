@@ -4,22 +4,24 @@ import { BaseGame } from '#shared/game/baseGame'
 // Only one instance
 let instance: Game | null = null
 
-export function useGame() {
-  const { public: publicEnv } = useRuntimeConfig()
-
-  if (!instance) {
-    instance = new BaseGame({ websocketUrl: publicEnv.websocketUrl })
-    return instance
-  }
-
-  return instance
-}
-
 function _useGameClient() {
   const router = useRouter()
 
   const isOpened = ref(false)
   const isLoading = ref(false)
+
+  const game = ref<Game>(useGame())
+
+  function useGame() {
+    const { public: publicEnv } = useRuntimeConfig()
+
+    if (!instance) {
+      instance = new BaseGame({ websocketUrl: publicEnv.websocketUrl })
+      return instance
+    }
+
+    return instance
+  }
 
   function setAsLoaded() {
     try {
@@ -36,7 +38,7 @@ function _useGameClient() {
   }, { immediate: true })
 
   return {
-    game: useGame(),
+    game,
     isLoading,
     isOpened,
     setAsLoaded,
