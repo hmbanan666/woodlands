@@ -89,7 +89,7 @@ export class BaseGame extends Container implements Game {
       backgroundAlpha: 0,
       antialias: false,
       roundPixels: false,
-      resolution: 4,
+      resolution: 2,
       autoDensity: true,
       resizeTo: window,
     })
