@@ -25,6 +25,14 @@ export interface Game extends Container {
   rebuildScene: () => void
 }
 
+export type ChunkVariant
+  = | 'GREEN'
+    | 'TOXIC'
+    | 'STONE'
+    | 'TEAL'
+    | 'BLUE'
+    | 'VIOLET'
+
 export interface GameObject extends Container {
   id: string
   type: GameObjectType
@@ -49,7 +57,7 @@ export interface GameObjectFlag extends GameObject {
 
 export interface GameObjectTree extends GameObject {
   isAnObstacleToWagon: boolean
-  variant: 'GREEN' | 'VIOLET' | 'STONE' | 'TEAL' | 'TOXIC' | 'BLUE'
+  variant: ChunkVariant
   treeType: '1' | '2' | '3' | '4' | '5'
   maxSize: number
 }

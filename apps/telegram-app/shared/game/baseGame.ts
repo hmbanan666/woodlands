@@ -1,3 +1,4 @@
+import type { TilingSprite } from 'pixi.js'
 import type {
   Game,
   GameObject,
@@ -16,6 +17,7 @@ import { BaseAssetService } from './services/baseAssetService'
 import { BasePlayerService } from './services/basePlayerService'
 import { BaseTreeService } from './services/baseTreeService'
 import { BaseWebSocketService } from './services/baseWebSocketService'
+import { BackgroundGenerator } from './utils/background'
 
 interface BaseGameOptions {
   websocketUrl: string
@@ -39,6 +41,7 @@ export class BaseGame extends Container implements Game {
   treeService: TreeService
   websocketService: WebSocketService
 
+  bg!: TilingSprite
   rectangle!: Rectangle
   bottomY = 0
   leftX = 0
@@ -89,7 +92,7 @@ export class BaseGame extends Container implements Game {
       backgroundAlpha: 0,
       antialias: false,
       roundPixels: false,
-      resolution: 2,
+      resolution: 4,
       autoDensity: true,
       resizeTo: window,
     })
@@ -97,15 +100,23 @@ export class BaseGame extends Container implements Game {
     await this.assetService.load()
 
     TextureStyle.defaultOptions.scaleMode = 'nearest'
-    this.app.ticker.maxFPS = 60
+    this.app.ticker.maxFPS = 120
     this.bottomY = this.app.screen.height - 100
 
     this.app.stage.eventMode = 'static'
     this.app.screen.width = window.innerWidth
     this.app.screen.height = window.innerHeight
+
     this.rectangle = new Rectangle(0, 0, this.app.screen.width, this.app.screen.height)
     this.app.stage.hitArea = this.rectangle
 
+    this.bg = await new BackgroundGenerator(this.app).generate({
+      width: this.app.screen.width,
+      height: this.app.screen.height,
+      variant: 'GREEN',
+    })
+
+    this.app.stage.addChild(this.bg)
     this.app.stage.addChild(this)
 
     await this.initPlayer(telegramId)
