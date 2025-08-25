@@ -5,6 +5,7 @@ import { BaseGame } from '#shared/game/baseGame'
 let instance: Game | null = null
 
 function _useGameClient() {
+  const { public: publicEnv } = useRuntimeConfig()
   const router = useRouter()
 
   const isOpened = ref(false)
@@ -13,8 +14,6 @@ function _useGameClient() {
   const game = ref<Game>(useGame())
 
   function useGame() {
-    const { public: publicEnv } = useRuntimeConfig()
-
     if (!instance) {
       instance = new BaseGame({ websocketUrl: publicEnv.websocketUrl })
       return instance
