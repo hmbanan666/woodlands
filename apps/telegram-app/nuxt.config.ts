@@ -25,6 +25,9 @@ export default defineNuxtConfig({
     '/api/**': { prerender: false },
   },
   runtimeConfig: {
+    public: {
+      websocketUrl: '',
+    },
     telegram: {
       botToken: '',
       devBotToken: '',

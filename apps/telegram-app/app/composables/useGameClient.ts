@@ -5,9 +5,10 @@ import { BaseGame } from '#shared/game/baseGame'
 let instance: Game | null = null
 
 export function useGame() {
+  const { public: publicEnv } = useRuntimeConfig()
+
   if (!instance) {
-    const websocketUrl = 'wss://woodlands.chatgame.space/api/websocket'
-    instance = new BaseGame({ websocketUrl })
+    instance = new BaseGame({ websocketUrl: publicEnv.websocketUrl })
     return instance
   }
 
@@ -30,8 +31,8 @@ function _useGameClient() {
     }
   }
 
-  watch(router.currentRoute, (value) => {
-    isOpened.value = value.path === '/'
+  watch(router.currentRoute, () => {
+    isOpened.value = router.currentRoute.value.name === 'index'
   })
 
   return {

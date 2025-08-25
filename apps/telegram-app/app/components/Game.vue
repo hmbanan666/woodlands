@@ -1,7 +1,9 @@
 <template>
   <div
     class="absolute inset-0 overflow-hidden select-none bg-orange-200"
-    :class="{ hidden: !gameClient.isOpened }"
+    :class="[
+      !gameClient.isOpened.value && 'hidden',
+    ]"
   >
     <div ref="canvas" class="absolute w-full h-full bottom-10" />
     <div class="absolute w-full h-35 bottom-0 bg-red-950" />
@@ -22,8 +24,6 @@
         </div>
       </div>
     </div>
-
-    <ConfettiBackground />
   </div>
 
   <Modal
@@ -83,7 +83,10 @@ onMounted(async () => {
       hapticFeedback.impactOccurred('light')
     }
   }
+})
 
-  return () => game.value.destroy()
+onUnmounted(() => {
+  canvas.value?.removeChild(game.value.app.canvas)
+  game.value.destroy()
 })
 </script>

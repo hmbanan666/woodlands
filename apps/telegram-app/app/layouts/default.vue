@@ -1,6 +1,7 @@
 <template>
   <main>
     <Game />
+    <ConfettiBackground />
     <slot />
   </main>
 
