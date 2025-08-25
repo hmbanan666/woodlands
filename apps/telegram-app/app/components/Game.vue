@@ -20,7 +20,16 @@
         </div> -->
 
         <div class="relative text-primary">
-          {{ game.websocketService.socket.status }}
+          <UIcon
+            v-if="game.websocketService.socket.status === 'CONNECTING'"
+            name="i-lucide-wifi-sync"
+            class="size-6 opacity-40"
+          />
+          <UIcon
+            v-if="game.websocketService.socket.status === 'OPEN'"
+            name="i-lucide-wifi"
+            class="size-6"
+          />
         </div>
       </div>
     </div>
@@ -34,7 +43,7 @@
     <p class="leading-tight">
       {{ t('app.welcome.description') }}
     </p>
-    <p class="tg-hint leading-tight">
+    <p class="tg-text-hint leading-tight">
       {{ t('app.welcome.hint') }}
     </p>
   </Modal>

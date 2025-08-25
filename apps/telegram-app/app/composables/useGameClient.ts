@@ -33,7 +33,7 @@ function _useGameClient() {
 
   watch(router.currentRoute, () => {
     isOpened.value = router.currentRoute.value.name === 'index'
-  })
+  }, { immediate: true })
 
   return {
     game: useGame(),

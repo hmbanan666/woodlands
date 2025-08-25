@@ -1,20 +1,27 @@
 <template>
-  <nav class="bg z-50 touch-pan-x fixed bottom-0 left-0 right-0 w-full h-25 rounded-t-lg">
+  <nav class="z-50 touch-pan-x fixed bottom-0 left-0 right-0 w-full h-25 tg-bg-bottom-bar rounded-t-lg">
     <div class="max-w-[28rem] mx-auto">
       <div class="mt-3 grid grid-cols-4">
         <button
           v-for="route in mainRoutes"
           :key="route.path"
-          class="flex flex-col items-center justify-center gap-1 px-4 cursor-pointer"
-          :class="[
-            router.currentRoute.value.path === route.path && 'button-active',
-          ]"
+          class="flex flex-col items-center justify-center gap-1 px-4 cursor-pointer tg-text-subtitle"
           @click="handleClick(route.path)"
         >
-          <div class="icon-block relative py-1 w-full rounded-2xl flex flex-row items-center justify-center">
+          <div
+            class="relative py-1 w-full rounded-2xl flex flex-row items-center justify-center"
+            :class="[
+              router.currentRoute.value.path === route.path && 'tg-bg-button tg-text',
+            ]"
+          >
             <UIcon :name="route.icon" class="size-6" />
           </div>
-          <p class="text text-xs font-medium">
+          <p
+            class="text-xs font-medium"
+            :class="[
+              router.currentRoute.value.path === route.path && 'tg-text',
+            ]"
+          >
             {{ route.title }}
           </p>
         </button>
@@ -64,23 +71,3 @@ function handleClick(path: string) {
   router.push(path)
 }
 </script>
-
-<style scoped>
-.bg {
-  background-color: var(--tg-theme-bottom-bar-bg-color);
-  border-top: 1px solid var(--tg-theme-section-separator-color);
-}
-button {
-  color: var(--tg-theme-subtitle-text-color);
-}
-.button-active {
-  .icon-block {
-    background-color: var(--tg-theme-button-color);
-    color: var(--tg-theme-button-text-color);
-  }
-
-  .text {
-    color: var(--tg-theme-button-color);
-  }
-}
-</style>

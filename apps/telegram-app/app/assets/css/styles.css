@@ -1,18 +1,3 @@
-html, body, #app {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  overscroll-behavior: none;
-}
-#app {
-  /* Preserve scrolling behavior */
-  overflow-y: auto;
-}
-#app::-webkit-scrollbar {
-  display: none;
-  width: 0;
-}
-
 @layer theme {
   :root {
     --tg-theme-bg-color: #ffffff;
@@ -43,47 +28,51 @@ html, body, #app {
   .tg-bg {
     background-color: var(--tg-theme-bg-color);
   }
-  .tg-secondary-bg {
+  .tg-bg-button {
+    background-color: var(--tg-theme-button-color);
+  }
+  .tg-bg-secondary {
     background-color: var(--tg-theme-secondary-bg-color);
   }
-  .tg-header-bg {
+  .tg-bg-header {
     background-color: var(--tg-theme-header-bg-color);
   }
-  .tg-bottom-bar-bg {
+  .tg-bg-bottom-bar {
     background-color: var(--tg-theme-bottom-bar-bg-color);
   }
-  .tg-section-bg {
+  .tg-bg-section {
     background-color: var(--tg-theme-section-bg-color);
   }
+
   .tg-border {
     border-color: var(--tg-theme-section-separator-color);
   }
+
   .tg-text {
     color: var(--tg-theme-text-color);
   }
-  .tg-accent-text {
+  .tg-text-accent {
     color: var(--tg-theme-accent-text-color);
   }
-  .tg-subtitle-text {
+  .tg-text-subtitle {
     color: var(--tg-theme-subtitle-text-color);
   }
-  .tg-destructive-text {
+  .tg-text-destructive {
     color: var(--tg-theme-destructive-text-color);
   }
-  .tg-hint {
+  .tg-text-hint {
     color: var(--tg-theme-hint-color);
   }
-  .tg-link {
+  .tg-text-link {
     color: var(--tg-theme-link-color);
   }
-  .tg-button {
-    background-color: var(--tg-theme-button-color);
+  .tg-text-button {
     color: var(--tg-theme-button-text-color);
   }
-  .tg-section-header-text {
+  .tg-text-header {
     color: var(--tg-theme-section-header-text-color);
   }
-  .tg-section-separator {
+  .tg-text-separator {
     color: var(--tg-theme-section-separator-color);
   }
 
@@ -98,4 +87,19 @@ html, body, #app {
     padding-top: var(--tg-viewport-content-safe-area-inset-top);
     padding-bottom: 200px;
   }
+}
+
+/* Preserve scrolling behavior */
+html, body, #app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+#app {
+  overflow-y: auto;
+}
+#app::-webkit-scrollbar {
+  display: none;
+  width: 0;
 }

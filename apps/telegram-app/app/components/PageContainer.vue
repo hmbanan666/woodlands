@@ -1,9 +1,7 @@
 <template>
-  <div class="z-30 tg-secondary-bg tg-text tg-safe-area overflow-hidden h-full min-h-dvh w-full">
-    <div class="tg-content-safe-area">
-      <div class="px-4 py-2 max-w-[28rem] mx-auto flex flex-col gap-y-6">
-        <slot />
-      </div>
+  <div class="z-30 overflow-hidden h-full min-h-dvh w-full tg-content-safe-area">
+    <div class="px-4 py-2 max-w-[28rem] mx-auto flex flex-col gap-y-6">
+      <slot />
     </div>
   </div>
 </template>
