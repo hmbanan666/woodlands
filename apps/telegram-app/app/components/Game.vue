@@ -2,7 +2,7 @@
   <div
     class="absolute inset-0 overflow-hidden select-none bg-orange-200"
     :class="[
-      !client.isOpened.value && 'hidden',
+      !gameStore.isOpened && 'hidden',
     ]"
   >
     <div ref="canvas" class="absolute w-full h-full bottom-10" />
@@ -19,17 +19,24 @@
           </p>
         </div> -->
 
-        <div class="relative text-primary">
-          <UIcon
-            v-if="client.game.value.websocketService.socket.status === 'CONNECTING'"
-            name="i-lucide-wifi-sync"
-            class="size-6 opacity-40"
-          />
-          <UIcon
-            v-if="client.game.value.websocketService.socket.status === 'OPEN'"
-            name="i-lucide-wifi"
-            class="size-6"
-          />
+        <div class="flex flex-row items-center gap-2">
+          <div class="text-primary">
+            <UIcon
+              v-if="gameStore.game.websocketService.socket.status === 'CONNECTING'"
+              name="i-lucide-wifi-sync"
+              class="size-6 opacity-40"
+            />
+            <UIcon
+              v-if="gameStore.game.websocketService.socket.status === 'OPEN'"
+              name="i-lucide-wifi"
+              class="size-6"
+            />
+          </div>
+
+          <div class="flex flex-col text-primary text-xs font-medium">
+            <p>x{{ playerX }}</p>
+            <p>y{{ playerY }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -55,9 +62,21 @@
 import { hapticFeedback } from '@telegram-apps/sdk-vue'
 
 const { t } = useI18n()
-const userStore = useUserStore()
 
-const client = useGameClient()
+const userStore = useUserStore()
+const gameStore = useGameStore()
+
+const playerX = ref(0)
+const playerY = ref(0)
+
+watch(
+  () => gameStore.game.player,
+  () => {
+    playerX.value = Math.floor(gameStore.game.player?.x ?? 0)
+    playerY.value = Math.floor(gameStore.game.player?.y ?? 0)
+  },
+  { deep: true },
+)
 
 const canvas = ref<HTMLElement>()
 const isHelpModalOpened = ref(true)
@@ -67,24 +86,24 @@ onMounted(async () => {
     return
   }
 
-  client.isLoading.value = true
+  gameStore.isLoading = true
 
   // Init
-  await client.game.value.init(userStore.initDataState.user.id.toString())
-  canvas.value?.appendChild(client.game.value.app.canvas)
+  await gameStore.game.init(userStore.initDataState.user.id.toString())
+  canvas.value?.appendChild(gameStore.game.app.canvas)
 
-  client.setAsLoaded()
+  gameStore.setAsLoaded()
 
-  client.game.value.openLoader = () => {
-    client.isLoading.value = true
+  gameStore.game.openLoader = () => {
+    gameStore.isLoading = true
   }
 
-  client.game.value.updateUI = async () => {
+  gameStore.game.updateUI = async () => {
     // await refreshCharacter()
-    client.setAsLoaded()
+    gameStore.setAsLoaded()
   }
 
-  client.game.value.vibrate = () => {
+  gameStore.game.vibrate = () => {
     if (hapticFeedback.impactOccurred.isAvailable()) {
       hapticFeedback.impactOccurred('light')
     }
@@ -92,7 +111,7 @@ onMounted(async () => {
 })
 
 onUnmounted(() => {
-  canvas.value?.removeChild(client.game.value.app.canvas)
-  client.game.value.destroy()
+  canvas.value?.removeChild(gameStore.game.app.canvas)
+  gameStore.game.destroy()
 })
 </script>
