@@ -1,4 +1,4 @@
-import type { Application } from 'pixi.js'
+import type { Application, Texture } from 'pixi.js'
 import type { ChunkVariant } from '../types'
 import { Container, Graphics, Sprite, TilingSprite } from 'pixi.js'
 import {
@@ -41,6 +41,8 @@ export class BackgroundGenerator {
   accentColor1!: string
   accentColor2!: string
   accentColor3!: string
+
+  tileTextureCache!: { 1: Texture, 2: Texture, 3: Texture, 4: Texture, 5: Texture }
 
   constructor(app: Application) {
     this.app = app
@@ -118,6 +120,14 @@ export class BackgroundGenerator {
       211: this.accentColor3,
       213: this.accentColor3,
       218: '0xfbff86', // light yellow
+    }
+
+    this.tileTextureCache = {
+      1: this.#generateTexture(BACKGROUND_TILE_1)!,
+      2: this.#generateTexture(BACKGROUND_TILE_2)!,
+      3: this.#generateTexture(BACKGROUND_TILE_3)!,
+      4: this.#generateTexture(BACKGROUND_TILE_4)!,
+      5: this.#generateTexture(BACKGROUND_TILE_5)!,
     }
   }
 
@@ -200,34 +210,29 @@ export class BackgroundGenerator {
   }
 
   #getRandomSpriteForBackground() {
-    const tileArray = this.#getTileByRandomChance()
-    const texture = this.#generateTexture(tileArray)
-    if (!texture) {
-      return
-    }
-
+    const texture = this.#getTextureByRandomChance()
     const sprite = Sprite.from(texture)
     sprite.scale = 4
 
     return sprite
   }
 
-  #getTileByRandomChance(): number[] {
+  #getTextureByRandomChance(): Texture {
     const randomMax = 100
     const random = getRandomInRange(1, randomMax)
 
     if (random <= 55) {
-      return BACKGROUND_TILE_1
+      return this.tileTextureCache[1]
     }
     if (random <= 93) {
-      return BACKGROUND_TILE_2
+      return this.tileTextureCache[2]
     }
     if (random <= 96) {
-      return BACKGROUND_TILE_3
+      return this.tileTextureCache[3]
     }
     if (random <= 98) {
-      return BACKGROUND_TILE_4
+      return this.tileTextureCache[4]
     }
-    return BACKGROUND_TILE_5
+    return this.tileTextureCache[5]
   }
 }
